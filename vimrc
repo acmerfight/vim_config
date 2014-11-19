@@ -47,6 +47,7 @@ filetype plugin on
 "启动自动补全
 filetype plugin indent on
 set number
+set backspace=indent,eol,start
 set expandtab
 set tabstop=8
 set shiftwidth=4
@@ -54,15 +55,14 @@ set softtabstop=4
 set autoindent
 :syntax on
 "这个是我喜欢的，一旦一行的字符超出80个的话就把那些字符的背景设为红色
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929 
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%100v.\+/
 set cursorcolumn
 set cursorline          " 突出显示当前行
-set mouse=a 
 set title                " change the terminal's title
 set novisualbell         " don't beep
 set noerrorbells         " don't beep
-set t_vb=
+set vb t_vb=
 set tm=500
 "" 高亮search命中的文本。
 set hlsearch
@@ -73,3 +73,7 @@ set ignorecase
 
 " " Always show the status line - use 2 lines for the status bar
  set laststatus=2
+ let g:ycm_seed_identifiers_with_syntax=1
+ nmap <C-g> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
+ let g:ycm_min_num_of_chars_for_completion=1
+ set completeopt-=preview
